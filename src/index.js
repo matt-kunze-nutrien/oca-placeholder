@@ -1,14 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { AUTH0_AUDIENCE } from "./constants";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Auth0Provider
+      domain="nutrien-dev.us.auth0.com"
+      clientId="QMIEi2ktFjxx6VGPUUjgNyZ7f3iGQPmH"
+      redirectUri={window.location.origin}
+      audience={AUTH0_AUDIENCE}
+      scope="profile"
+    >
+      <App />
+    </Auth0Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
