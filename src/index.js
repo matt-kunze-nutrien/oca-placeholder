@@ -9,7 +9,7 @@ import { AUTH0_AUDIENCE } from "./constants";
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="nutrien-dev.us.auth0.com"
+      domain="auth.dev.nutrienagsolutions.com"
       clientId="QMIEi2ktFjxx6VGPUUjgNyZ7f3iGQPmH"
       redirectUri={window.location.origin}
       audience={AUTH0_AUDIENCE}
