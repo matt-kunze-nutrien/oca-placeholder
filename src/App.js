@@ -31,26 +31,26 @@ function App() {
   }, [apiToken, isAuthenticated, getAccessTokenSilently]);
 
   const [cpToken, setCpToken] = useState(null);
-  useEffect(() => {
-    if (isAuthenticated && !cpToken) {
-      getAccessTokenSilently({
-        audience: CP_AUDIENCE,
-      })
-        .then(setCpToken)
-        .catch((err) => console.error(err));
-    }
-  }, [cpToken, isAuthenticated, getAccessTokenSilently]);
+  // useEffect(() => {
+  //   if (isAuthenticated && !cpToken) {
+  //     getAccessTokenSilently({
+  //       audience: CP_AUDIENCE,
+  //     })
+  //       .then(setCpToken)
+  //       .catch((err) => console.error(err));
+  //   }
+  // }, [cpToken, isAuthenticated, getAccessTokenSilently]);
 
   const [digitalToken, setDigitalToken] = useState(null);
-  useEffect(() => {
-    if (isAuthenticated && !digitalToken) {
-      getAccessTokenSilently({
-        audience: DIGITAL_AUDIENCE,
-      })
-        .then(setDigitalToken)
-        .catch((err) => console.error(err));
-    }
-  }, [digitalToken, isAuthenticated, getAccessTokenSilently]);
+  // useEffect(() => {
+  //   if (isAuthenticated && !digitalToken) {
+  //     getAccessTokenSilently({
+  //       audience: DIGITAL_AUDIENCE,
+  //     })
+  //       .then(setDigitalToken)
+  //       .catch((err) => console.error(err));
+  //   }
+  // }, [digitalToken, isAuthenticated, getAccessTokenSilently]);
 
   console.info({ apiToken, cpToken, digitalToken });
   return (
