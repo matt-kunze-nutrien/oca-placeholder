@@ -4,13 +4,13 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { AUTH0_AUDIENCE } from "./constants";
+import { AUTH0_AUDIENCE, AUTH0_CLIENTID, AUTH0_DOMAIN } from "./constants";
 
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="auth.dev.nutrienagsolutions.com"
-      clientId="QMIEi2ktFjxx6VGPUUjgNyZ7f3iGQPmH"
+      domain={AUTH0_DOMAIN}
+      clientId={AUTH0_CLIENTID}
       redirectUri={window.location.origin}
       audience={AUTH0_AUDIENCE}
       scope="profile"

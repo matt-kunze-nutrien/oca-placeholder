@@ -3,6 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import jwtDecode from "jwt-decode";
 import "./App.css";
 
+import { CP_AUDIENCE, DIGITAL_AUDIENCE } from "./constants";
+
 function App() {
   const {
     isAuthenticated,
@@ -28,17 +30,29 @@ function App() {
     }
   }, [apiToken, isAuthenticated, getAccessTokenSilently]);
 
-  const [cxhToken, setCxhToken] = useState(null);
+  const [cpToken, setCpToken] = useState(null);
   useEffect(() => {
-    if (isAuthenticated && !cxhToken) {
+    if (isAuthenticated && !cpToken) {
       getAccessTokenSilently({
-        audience: "https://cxh-api.dev.cps-core.com/",
+        audience: CP_AUDIENCE,
       })
-        .then(setCxhToken)
+        .then(setCpToken)
         .catch((err) => console.error(err));
     }
-  }, [cxhToken, isAuthenticated, getAccessTokenSilently]);
+  }, [cpToken, isAuthenticated, getAccessTokenSilently]);
 
+  const [digitalToken, setDigitalToken] = useState(null);
+  useEffect(() => {
+    if (isAuthenticated && !digitalToken) {
+      getAccessTokenSilently({
+        audience: DIGITAL_AUDIENCE,
+      })
+        .then(setDigitalToken)
+        .catch((err) => console.error(err));
+    }
+  }, [digitalToken, isAuthenticated, getAccessTokenSilently]);
+
+  console.info({ apiToken, cpToken, digitalToken });
   return (
     <div className="App">
       <header className="App-header">
@@ -49,9 +63,17 @@ function App() {
         <pre className="App-detail">
           {JSON.stringify(apiToken ? jwtDecode(apiToken) : null, null, "  ")}
         </pre>
-        <h3>CXH Token</h3>
+        <h3>Digital Token</h3>
         <pre className="App-detail">
-          {JSON.stringify(cxhToken ? jwtDecode(cxhToken) : null, null, "  ")}
+          {JSON.stringify(
+            digitalToken ? jwtDecode(digitalToken) : null,
+            null,
+            "  "
+          )}
+        </pre>
+        <h3>CP Token</h3>
+        <pre className="App-detail">
+          {JSON.stringify(cpToken ? jwtDecode(cpToken) : null, null, "  ")}
         </pre>
         <button onClick={logout}>Sign out</button>
       </header>
